@@ -8,8 +8,10 @@ Note: this problem does not require the "compounding interest" formula from the 
 
 """
 
-### Your code here ###
+in_state_cost = 30792  #USD
 
-in_state_gift = 0
+out_state_cost = 47882  #USD
 
-out_state_gift = 0
+in_state_gift = in_state_cost
+
+out_state_gift = out_state_cost
