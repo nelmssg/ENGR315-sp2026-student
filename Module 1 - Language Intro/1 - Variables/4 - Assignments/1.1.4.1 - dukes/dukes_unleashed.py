@@ -12,6 +12,6 @@ in_state_cost = 30792  #USD
 
 out_state_cost = 47882  #USD
 
-in_state_gift = in_state_cost
+in_state_gift = (in_state_cost / .05)
 
-out_state_gift = out_state_cost
+out_state_gift = (out_state_cost / .05)

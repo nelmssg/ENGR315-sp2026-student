@@ -12,7 +12,7 @@ Given a list, count the number of even and odd numbers in the list. Your final a
 be stored in two variables: "num_odds" and "num_evens".
 
 **3.4.3 - Pig Latin with Strings**
-Given a string containing English words, translate the sentence into [Pig Latin](https://en.wikipedia.org/wiki/Pig_Latin). 
+Given a string containing English words, translate the sentence into [Pig Latin](https://en.wikipedia.org/wiki/Pig_Latin).
 Spilts() will separate a sting into a list of words. Your code will modify each word and then re-assemble into a final String.
 Utilize the following rules:
 

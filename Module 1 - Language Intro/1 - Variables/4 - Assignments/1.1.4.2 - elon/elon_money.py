@@ -11,11 +11,17 @@ would his investment be worth in 10-year and 20-year bonds? Assume the 10-year b
 the 20-year bonds pay 4.32%, with each compounding annually.
 """
 
-### all your code below ###
+initialMoney = 33000000000
+i10 = .0396
+i20 = .0432
 
+def compound(principal, rate, years):
+    return (principal * ((1 + rate) ** years))
 
 # final answer for 10-year
-ten_year_final = None
+ten_year_final = compound(initialMoney, i10, 10)
 
 # final answer for 20-year
-twenty_year_final = None
+twenty_year_final = compound(initialMoney, i20, 20)
+
+print(ten_year_final, twenty_year_final)

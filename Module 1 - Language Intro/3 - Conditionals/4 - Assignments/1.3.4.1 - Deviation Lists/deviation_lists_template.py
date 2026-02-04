@@ -29,4 +29,9 @@ random_list_B = random.sample(range(100), random_length)
 # e.g. longest_list_is = myList
 longest_list_is = None
 
-### YOUR CODE HERE
+a = np.std(random_list_A)
+b = np.std(random_list_B)
+
+lists = [a,b]
+
+longest_list_is = max(lists)
