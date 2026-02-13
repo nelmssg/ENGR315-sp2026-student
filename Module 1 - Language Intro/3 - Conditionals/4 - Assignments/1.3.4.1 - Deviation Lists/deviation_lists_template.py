@@ -32,6 +32,7 @@ longest_list_is = None
 a = np.std(random_list_A)
 b = np.std(random_list_B)
 
-lists = [a,b]
-
-longest_list_is = max(lists)
+if a > b:
+    longest_list_is = random_list_A
+else:
+    longest_list_is = random_list_B
