@@ -142,8 +142,12 @@ You now have your own copy at `https://github.com/YOUR-USERNAME/ENGR315-sp2026-s
    - Click **Choose...** next to "Local path"
    - Select a location (e.g., `Documents/ENGR315`)
 5. Click **Clone**
-6. Wait for the repository to download (this may take a minute)
-7. Once complete, click **Open in Visual Studio Code** (or go to Repository → Open in Visual Studio Code)
+6. **Important:** GitHub Desktop will ask "How are you planning to use this fork?"
+   - Select **"For my own purposes"**
+   - This ensures you're working on your own copy, not trying to contribute back to the course repository
+   - Click **Continue**
+7. Wait for the repository to download (this may take a minute)
+8. Once complete, click **Open in Visual Studio Code** (or go to Repository → Open in Visual Studio Code)
 
 The course materials are now on your computer and opened in VSCode!
 
@@ -153,39 +157,82 @@ When your instructor updates the course materials, you can pull those changes in
 
 1. Open **GitHub Desktop**
 2. Make sure your repository is selected
-3. Go to **Repository** → **Pull** (or press `Ctrl+Shift+P` / `Cmd+Shift+P`)
-4. The new changes will be downloaded to your computer
+3. Go to **Repository** → **Fetch** (or press `Ctrl+Shift+T` / `Cmd+Shift+T`)
+4. Go to **Branch** → **Merge into current branch...** (or press `Ctrl+Shift+M` / `Cmd+Shift+M`)
+5. Select branch **upstream/main** that to be merge into your branch **main**
+6. The new changes will be downloaded to your computer
 
 **Note:** If you've modified any files that the instructor also updated, you may need to resolve "merge conflicts." Ask for help if this happens!
 
-## Step 6: Install Python Packages
+**Note:** Frequent **commit** and **push** operations will help to track your changes, and sync Github (Cloud) with our local files.
 
-The course requires several Python packages for data analysis. VSCode can help you install these automatically!
+## Step 6: Create a Virtual Environment and Install Python Packages
 
-### Option 1: Let VSCode Install Automatically (Easiest)
+The course requires several Python packages for data analysis. We'll create a virtual environment (an isolated Python workspace) and install the packages there.
 
-When you open a Python file, VSCode may show a notification about installing packages:
+### Why Use a Virtual Environment?
 
-1. In VSCode's Explorer (left sidebar), open any Python file (like `Hello_World.py` in Module 0)
-2. Look for a **blue notification** in the bottom-right corner that says something like:
-   - "We noticed a new requirements.txt..."
-   - "Do you want to install the required packages?"
-3. Click **Install** or **Yes**
-4. VSCode will automatically install all required packages
-5. Wait a few minutes while packages are installed (you'll see progress in the bottom status bar)
+A virtual environment keeps this course's packages separate from other Python projects on your computer. Think of it like having a separate toolbox just for this class!
 
-### Option 2: Install Using VSCode's Terminal (If No Notification Appears)
+### Create and Activate the Virtual Environment
 
-If you don't see a notification, you can install packages through VSCode's built-in terminal:
-
-1. In VSCode, go to **Terminal** → **New Terminal** (or press `` Ctrl+` ``)
+1. In VSCode, open the repository folder (if not already open)
+2. Go to **Terminal** → **New Terminal** (or press `` Ctrl+` ``)
    - A terminal panel will appear at the bottom of VSCode
-2. In the terminal, type this command and press Enter:
+3. Make sure you're in the repository folder. The terminal should show the path ending in `ENGR315-sp2026-student`
+4. Create the virtual environment by typing this command and pressing Enter:
+   
+   **Windows:**
+   ```bash
+   python -m venv venv
+   ```
+   
+   **macOS/Linux:**
+   ```bash
+   python3 -m venv venv
+   ```
+   
+5. Wait a few seconds while the virtual environment is created (a new `venv` folder will appear)
+
+6. **Activate** the virtual environment:
+   
+   **Windows (Command Prompt or PowerShell):**
+   ```bash
+   venv\Scripts\activate
+   ```
+   
+   **macOS/Linux:**
+   ```bash
+   source venv/bin/activate
+   ```
+
+7. **You'll know it worked** when you see `(venv)` appear at the beginning of your terminal prompt, like:
+   ```
+   (venv) C:\Users\YourName\Documents\ENGR315\ENGR315-sp2026-student>
+   ```
+   or
+   ```
+   (venv) ~/Documents/ENGR315/ENGR315-sp2026-student %
+   ```
+
+### Install Required Packages
+
+Now that your virtual environment is active, install the required packages:
+
+1. With `(venv)` showing in your terminal prompt, type this command and press Enter:
+   
+   **Windows:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+   
+   **macOS/Linux:**
    ```bash
    pip3 install -r requirements.txt
    ```
-3. Wait a few minutes while packages download and install
-4. When complete, you'll see "Successfully installed" followed by a list of packages
+
+2. Wait a few minutes while packages download and install (you'll see lots of text scrolling by)
+3. When complete, you'll see "Successfully installed" followed by a list of packages
 
 **What's being installed:**
 - `numpy` - For numerical computations
@@ -193,6 +240,30 @@ If you don't see a notification, you can install packages through VSCode's built
 - `matplotlib` - For creating graphs
 - `scipy` - For scientific computing
 - And several other helpful packages!
+
+### Tell VSCode to Use Your Virtual Environment
+
+This is important! VSCode needs to know to use the virtual environment you just created:
+
+1. Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (macOS) to open the Command Palette
+2. Type "Python: Select Interpreter" and select it from the list
+3. You should see several Python options. Choose the one that says:
+   - `Python 3.x.x ('venv': venv)` or
+   - `./venv/bin/python` (macOS/Linux) or
+   - `.\venv\Scripts\python.exe` (Windows)
+4. Click on it to select it
+
+Now VSCode will automatically use your virtual environment whenever you run Python code!
+
+### Do You Need to Activate the Environment Every Time?
+
+**Important: Always use your virtual environment for this course!** This ensures you have the correct packages and versions.
+
+**Short answer:** Not usually! Once you've selected the interpreter in VSCode (step above), VSCode will automatically activate it for you when running Python files.
+
+**However, if you ever open a new terminal manually** and see that `(venv)` is not showing, you **must** activate it again using the activation command from step 6 above before running `pip` commands or executing Python from the terminal.
+
+**Quick check:** Look at your terminal prompt. If you see `(venv)` at the beginning, you're good! If not, activate it.
 
 Once you see the success message, you're ready to code! 🎉
 
