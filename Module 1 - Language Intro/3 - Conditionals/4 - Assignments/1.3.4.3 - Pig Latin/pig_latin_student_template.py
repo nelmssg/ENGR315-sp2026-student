@@ -42,14 +42,15 @@ for word in words:
     # starts with vowel, modify accordingly and put in list
     elif starts_with_vowel(word) == True:
         # modify the word and place in pig_latin list
-        word = f"{word}ay"
+
+        word = f"{word}vay"
         pig_latin.append(word)
         continue
 
     # starts with consonant, modify accordingly  and put in list
     else:
         # modify word and place in pig_latin list
-        word = f"{word}vay"
+        word = f"{word[1:]}{word[0]}ay"
         pig_latin.append(word)
         continue
 

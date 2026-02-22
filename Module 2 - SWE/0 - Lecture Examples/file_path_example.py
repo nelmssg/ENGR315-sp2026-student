@@ -22,9 +22,8 @@ else:
     print("Cannot locate test_data at path: ", relative_path)
 
 # check an absolute path based upon Windows notation
-absolute_path = r"C:\Users\Jason Work\Documents\GitHub\ENGR298-2022-Private\lecture-examples\week8-file-paths\train_data.txt"
+absolute_path = r"C:\Users\nelms\OneDrive - James Madison University\ENGR 315\ENGR315-sp2026-student\Module 2 - SWE\0 - Lecture Examples\file_path_example.py"
 if exists(absolute_path):
     print("Can see train_data!")
 else:
     print("Cannot locate train_data at path: ", absolute_path)
-
