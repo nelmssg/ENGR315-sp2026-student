@@ -8,13 +8,23 @@ def my_pi(target_error):
     :param target_error: Desired error for PI estimation
     :return: Approximation of PI to specified error bound
     """
+    pi_estimate = 0
+    a = 1
+    b = 1/(math.sqrt(2))
+    t = (1/4)
+    p = 1
 
-    ### YOUR CODE HERE ###
+    while abs(pi_estimate - math.pi) > target_error:
 
-    # change this so an actual value is returned
-    return 0
+        ai = (a + b) / 2
+        b = math.sqrt(a * b)
+        t = (t - (p * ((ai - a)**2)))
+        p = 2 * p
+        a = ai
 
+        pi_estimate = (((a + b)**2)/(4 * t))
 
+    return pi_estimate
 
 
 desired_error = 1E-10
