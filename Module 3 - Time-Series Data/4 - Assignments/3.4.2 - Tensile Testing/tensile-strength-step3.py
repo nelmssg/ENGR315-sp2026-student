@@ -60,9 +60,14 @@ def calculate_stress(force, sample_diameter):
     :return: An array of stresses experienced by the sample in Kilo Pascals (MPa)
     """
 
-    ### YOUR SOLUTION FROM STEP 1 TEMPLATE HERE ###
+    # calculate the cross-section area (mm^2)
+    area = (math.pi * ((sample_diameter / 2)**2))
 
-    return None
+    # calculate stress (MPa) from load (kN) and cross-sectional area
+    # delete this line and replace it with your own
+    stress = force / area
+
+    return stress
 
 
 def calculate_max_strength_strain(strain, stress):
@@ -75,9 +80,14 @@ def calculate_max_strength_strain(strain, stress):
     Fracture Strain: the maximum strain experienced before fracture
     """
 
-    ### YOUR SOLUTION FROM STEP 2 TEMPLATE HERE ###
+    # calculate the maximum stress experienced
+    ultimate_tensile_stress = max(stress)
 
-    return -1, -1
+    # calculate the maximum strain experienced
+    fracture_strain = max(strain)
+
+    return ultimate_tensile_stress, fracture_strain
+
 
 def calculate_elastic_modulus(strain, stress):
     """
@@ -98,27 +108,25 @@ def calculate_elastic_modulus(strain, stress):
 
     # Step 3a: find the point that is 40% of peak stress
     # use from 0 to that value to create a linear plot
+    max_stress = max(stress)
+    secant_strain = int(max_stress * 0.4)
 
-    ### your code below ###
-    secant_strain = -1
-
-    # Step 3b: find the intersection between 40% line and the curvey
-    # take the abs() difference between the stress vector and secant_straint point
-
-    ### your code below ###
-    diffs = -1
+    # Step 3b: find the intersection between 40% line and the curve
+    # take the abs() difference between the stress vector and secant_strain point
+    diffs = abs(stress - secant_strain)
 
     # use np.argmin() to find the minimum of the diffs array.
     # this will be the INDEX of the point in stress-strain that is closest to
     # secant_strain intersection
-
-    # uncomment the line below and replace with your own
-    # linear_index = ....
+    linear_index = np.argmin(diffs)
 
     # Step 3c: down select to linear region for stress and strain
     # using list slicing. Uncomment lines below
-    # linear_stress = stress[# list slice#]
-    # linear_strain = strain[#list slice#]
+    linear_stress = stress[:linear_index]
+    linear_strain = strain[:linear_index]
+    print(f"stress len is: {len(stress)}")
+    print(f"lin stress len is: {linear_stress}")
+    print(f"ratio is: {(len(linear_stress))/(len(stress))}")
 
     # Step 3d: find least squares fit to a line in the linear region
     # use 1-degree polynominal fit (line) from np.polyfit
@@ -127,7 +135,9 @@ def calculate_elastic_modulus(strain, stress):
     # uncomment the line below and call np.polyfit
     # slope, intercept = ....
 
-    return linear_index, slope, intercept
+    #linear_index, slope, intercept
+
+    return None
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
@@ -141,7 +151,7 @@ if __name__ == "__main__":
 
     ### Do not modify below this line ###
 
-    path_to_directory = "../../../data/tensile/"
+    path_to_directory = "C:/Users/nelms/OneDrive - James Madison University/ENGR 315/ENGR315-sp2026-student/data/tensile/"
     path_to_samples = path_to_directory + material_folder + "/"
 
     # manually parse file to get gage diameter and then calculate cross-sectional area
@@ -158,12 +168,16 @@ if __name__ == "__main__":
         print("Error! No stress returned. Did you fill in the calculate_stress() method?")
         sys.exit(-1)
 
+
+
     # use scatter plot so we don't assume a line (yet)
-    plt.scatter(strain, stress, label="Stress - Strain")
-    plt.xlabel('Strain (mm/mm)')
-    plt.ylabel('Stress (MPa)')
-    plt.title('Stress-Strain Curve for Sample ' + sample_name)
-    plt.show()
+#    plt.scatter(strain, stress, label="Stress - Strain")
+#    plt.xlabel('Strain (mm/mm)')
+#    plt.ylabel('Stress (MPa)')
+#    plt.title('Stress-Strain Curve for Sample ' + sample_name)
+#    plt.show()
+
+
 
     # Step #2: Calculate basic parameters such as the ultimate tensile strength
     # and fracture strain
@@ -215,4 +229,3 @@ if __name__ == "__main__":
 
     plt.legend()
     plt.show()
-

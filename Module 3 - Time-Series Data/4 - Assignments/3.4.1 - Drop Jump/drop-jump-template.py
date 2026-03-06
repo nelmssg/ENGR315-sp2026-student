@@ -60,9 +60,7 @@ def main(full_path_to_file):
         # if signal is rising
         if value > baseline + delta:
             # mark this index as the landing point
-
             first_landing_index = index
-
             # break out of the loop to end iterating
             break
 
@@ -138,7 +136,7 @@ if __name__ == "__main__":
     filename = "FP1.txt"
 
     # load force plate data (this path may change based upon where you place this file in your project)
-    path_to_data_folder = "../../../data/drop-jump/force-plate/"
+    path_to_data_folder = r"Module 3 - Time-Series Data/4 - Assignments/3.4.1 - Drop Jump/force-plate/"
 
     ### Do not modify below this line ###
 
