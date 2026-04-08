@@ -12,22 +12,20 @@ def generate_csv_file(filename, results):
     """
 
     # Step 1: create a variable to hold the file name
-
-    # uncomment this line
-    # output_file_name = ### your code here ###
+    output_file_name = "output_file.csv"
 
     # Step 2: use open() to open the file in write mode. Set the return of open()
     # to a variable name that will be your file handle
 
     # uncomment the line below
-    # file = ### your code here ###
+    file = open(output_file_name, "w")
 
     # Step 3: write out the header for the CSV file. This string is provided for you so
     # your data can be loaded and checked. Use write().
     file_header = "Sample_Name,Material_Type,Tensile_Strength,Fracture_Strain,Elastic_Modulus,Yield_Strength\n"
 
     # write header string out to file
-    # file.### your code here ###
+    file.write(file_header)
 
     # Step 4: Iterate through the list of results. Each sample will contain the data for an individual test
     # The Materials Object will contain sample name, type, tensile strength, fracture strain, elastic modulus,
@@ -47,16 +45,15 @@ def generate_csv_file(filename, results):
         # stitched between each variable in the output. Do not round the data
         # Make sure an endline character '\n' is always at the end of your string!
 
-        # uncomment the line below
-        # string_to_write = ### your code here ###
+        string_to_write = f"{name}, {material_type}, {tensile_strength}, {fracture_strain}, {modulus}, {yield_strength}\n"
 
         # Finally, given that long string, write it to a file
 
-        ### your code here ###
+        file.write(string_to_write)
 
     # close the file once all writing is complete
     # uncomment this line before you're done
-    ##file.close()
+    file.close()
 
     # since we got here, it must have worked.
     return True
@@ -65,7 +62,7 @@ def generate_csv_file(filename, results):
 if __name__ == "__main__":
 
     # get path to data/ folder
-    path_to_tensile_folder = "../../../data/tensile/"
+    path_to_tensile_folder = r"C:\Users\nelms\OneDrive - James Madison University\ENGR 315\ENGR315-sp2026-student\data\tensile"
 
     # list to hold all sample results
     results = []
@@ -81,7 +78,7 @@ if __name__ == "__main__":
         print("Parsing material: ", material)
 
         # walk through folder
-        path_to_material_folder = path_to_tensile_folder + material + "/"
+        path_to_material_folder = path_to_tensile_folder + "/" + material + "/"
         for root, dirs, files in os.walk(path_to_material_folder):
 
             # parse each file that was found
@@ -89,7 +86,7 @@ if __name__ == "__main__":
                 print("\tLoad sample: ", file_name)
 
                 # create path to sample file
-                path_to_sample = path_to_material_folder + file_name
+                path_to_sample = path_to_material_folder + "/" + file_name
 
                 # Parse the file ane return based values
                 # sample diameter (mm), time (s), displacement (mm), force (kN), and strain (%)

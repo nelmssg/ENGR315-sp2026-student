@@ -1,7 +1,7 @@
 import pandas as pd
 
 # path to overall file
-path_to_file = "../../data/tensile/tensile_data.csv"
+path_to_file = r"C:\Users\nelms\OneDrive - James Madison University\ENGR 315\ENGR315-sp2026-student\data\tensile\tensile_data.csv"
 
 # load data into dataframe
 df = pd.read_csv(path_to_file)
@@ -62,4 +62,3 @@ print("PMMA\t", round(pmma_modulus_avg, 2), "+/-", round(pmma_modulus_std, 2),
 
 # add some space after the table
 print("\n")
-

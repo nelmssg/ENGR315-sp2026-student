@@ -34,7 +34,21 @@ def one_sample_tests(_files: list, _mean: float, _alpha: float, _less_than: bool
     # list of files that are out of spec
     reject_null_hypothesis = []
 
-    # YOUR CODE HERE #
+    for file in _files:
+        data = np.loadtxt(file)
+
+        t_stat, p_value_two_sided = ttest_1samp(data, _mean)
+
+        if _less_than:
+            # left sided test
+            p_value = p_value_two_sided / 2 if t_stat < 0 else 1 - p_value_two_sided / 2
+
+        else:
+            # right sided test
+            p_value = p_value_two_sided / 2 if t_stat > 0 else 1 - p_value_two_sided / 2
+
+        if p_value < _alpha:
+            reject_null_hypothesis.append(file)
 
     # return samples that were rejected
     return reject_null_hypothesis
@@ -80,4 +94,3 @@ if __name__ == "__main__":
     # perform all left-sided tests (rejected should be greater than target as means not equal)
     right_sided_tests = one_sample_tests(_files=one_sided_test_files, _mean=target_mu, _alpha=0.5, _less_than=False)
     print('Conducting right sided tests. All samples greater that mean should be returned. Samples: ', right_sided_tests)
-
