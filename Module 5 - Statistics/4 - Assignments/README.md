@@ -12,7 +12,7 @@ Note: your solution will need to open and load each file. It is suggested to use
         :param _less_than: If true, then a left-sided (<) t-test is performed. Otherwise, a right-sided test (>)
         :return: A list of files where the null hypothesis is rejected
 
-**5.4.2 - Two Sided for Two Sample Tests**
+**5.4.2 - Two Sided for Two Samples Tests**
 
 Complete the two-sided-tests function for Two Samples. It is provided a list of files that contain samples from a distribution. 
 The function should return those file names where the sample rejects the NULL hypothesis during a two-sided t-test.
