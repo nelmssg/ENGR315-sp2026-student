@@ -24,26 +24,32 @@ num_samples = 1000
 
 # generate those samples with numpy
 normal_samples = np.random.normal(loc=desired_mu, scale=desired_std, size=num_samples)
+print(normal_samples)
+print(len(normal_samples))
+print(max(normal_samples))
+print(min(normal_samples))
 
 """
 Step #2: Find the Mean and Standard Deviation of the Random Sample
 """
-sample_mean = -1
-sample_std_dev = -1
+sample_mean = np.average(normal_samples)
+sample_std_dev = np.std(normal_samples)
 
 """
 Step #3: Generate the x and y points for the plot for a normal distribution
 """
 
 # Hint: Remember the functions described in the examples, choose an appropriate range for x
-x = -1
-y = -1
+x = np.linspace(start=-31, stop=41, num=100)
+y = norm.pdf(x, loc=sample_mean, scale=sample_std_dev)
 
 """
 Step #4: Generate a plot for the Fitted Normal Distribution, include a title and axis labels
 """
-
-# Your Code Here #
+plt.plot(x, y, label="Normal Distribution")
+plt.xlabel('X')
+plt.ylabel('Pobability of X')
+plt.title('Normal Distribution')
 
 """
 Step 5: Compare your Fit against the true data
@@ -75,24 +81,28 @@ Step #7: Create an Exponential Fit and pull out the Beta value
 """
 
 # Hint: Use the appropriate function for Exponential Fit
-(fit_loc, fit_scale) = None, None
+(fit_loc, fit_scale) = expon.fit(exponential_samples)
 
 # pull out beta from the fitted distribution
-fit_beta = -1
+fit_beta = fit_scale
 
 """
 Step #8: Generate x and y from the Exponential Fit
 """
 
 # Hint: Remember the functions described in the examples, choose an appropriate range for x
-exp_x = -1
-exp_y = -1
+exp_x = np.linspace(start=0, stop=50, num=100)
+exp_y = expon.pdf(exp_x, scale=fit_beta)
 
 """
 Step #9: Generate a plot for the Fitted Exponential Distribution, include a title and axis labels
 """
 
-# Your Code Here #
+plt.plot(exp_x, exp_y, label='Exponential Distribution')
+plt.xlabel('X')
+plt.ylabel('Pobability of X')
+plt.title('Exponential Distribution')
+
 
 """
 Step #10: Compare your Fit against the true data
@@ -108,4 +118,3 @@ plt.legend()
 
 # show the plot
 plt.show()
-
